@@ -15,3 +15,6 @@ public:
         return maxi;
     }
 };
+
+// Time Complexity - O(N) - N - size of array
+// Space Complexity - O(1)
