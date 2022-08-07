@@ -1,0 +1,24 @@
+class Solution {
+public:
+    
+    int maxProfit(vector<int>& prices) {
+        
+        int maxDiff=0;
+        int maxel=*(--prices.end());
+        for (int i = prices.size()-2; i >= 0; i--)
+        {
+            if (prices[i] > maxel)
+                maxel = prices[i];
+            else
+            {
+                int diff = maxel - prices[i];
+                if (diff > maxDiff)
+                {
+                    maxDiff = diff;
+                }
+            }
+        }
+        
+        return maxDiff;
+    }
+};
