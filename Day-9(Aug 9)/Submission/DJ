@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int romanToInt(string s) {
+        
+        unordered_map<string, int> m;
+        int res=0;
+        
+        m["I"]=1;m["V"]=5;m["X"]=10;m["L"]=50;m["C"]=100;m["D"]=500;m["M"]=1000;
+        m["IV"]=4;m["IX"]=9;m["XL"]=40;m["XC"]=90;m["CD"]=400;m["CM"]=900;
+        
+        for(int i=0;i<s.size();)
+        {
+            if(i+1<s.size())
+            {
+                string a="",b="";
+                a+=s[i];
+                b=b+s[i]+s[i+1];
+                if(m[b]>m[a])
+                {
+                    res+=m[b];
+                    i+=2;
+                }
+                else{
+                    res+=m[a];
+                    i++;
+                }
+            }
+            else{
+                string a="";
+                a+=s[i];
+                res+=m[a];
+                i++;
+            }
+        }
+        
+        return res;
+        
+    }
+};
