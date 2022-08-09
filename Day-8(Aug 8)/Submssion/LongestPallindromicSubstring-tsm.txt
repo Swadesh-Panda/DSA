@@ -1,0 +1,45 @@
+class Solution {
+public:
+    string longestPalindrome(string s) {
+         
+        int n=s.size();
+        int arr[n][n];
+        memset(arr, 0, sizeof(arr));
+        int maxLength=1;
+        int start=0;
+        //rows are the starting index and columns are the ending index of the strings
+        //the diagonal elements of the 2d array are the strings of length 1 which are pallindrome
+        for(int i=0;i<n;i++){
+            arr[i][i]=1;
+        }
+        //fill the 2d array with 0 or 1 whether the string of length 2 is pallindrome or not
+        for(int i=0;i<n-1;i++){
+            if(s[i] == s[i+1]){
+                arr[i][i+1]=1;
+                maxLength = 2;
+                start=i;
+            }
+        }
+        
+        for(int i=3;i<=n;i++){
+            for(int j=0;j<n-i+1;j++){
+                int k = i+j-1;
+                if(arr[j+1][k-1] == 1 && s[j] == s[k]){
+                    arr[j][k]=1;
+                    if(i > maxLength){
+                        start=j;
+                        maxLength=i;
+                    }
+                    
+                }
+            }
+        }
+             
+         string newstr="";
+        for(int i=start;i<=start+maxLength-1;i++){
+            newstr += s[i];
+        }
+             
+        return newstr;
+    }
+};
