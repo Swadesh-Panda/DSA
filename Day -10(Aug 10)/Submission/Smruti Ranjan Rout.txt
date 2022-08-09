@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    int myAtoi(string s) {
+        //converts a string to a 32-bit signed integer
+        long ans=0;
+        while(s.front() ==' '){
+            s.erase(s.begin());
+        }
+        int sign=1;
+        if(s[0]=='+'){
+            sign =1;
+            s.erase(s.begin());
+        }
+        else if(s[0]=='-'){
+            sign=-1;
+            s.erase(s.begin());
+        }
+        for(int i=0;i<s.size();i++){
+            if(s[i]>='0' && s[i]<='9'){
+                int num=s[i]-'0';
+                long temp= ans*10+num;
+                if((temp>=INT_MAX && sign==1) || ((temp-1>=INT_MAX) && sign==-1)){
+                    return (sign==1?INT_MAX:INT_MIN);      
+                }
+                else{
+                    ans=ans*10+num;
+                }
+            }
+            else{
+                break;
+            }
+        }
+        if(sign==1)
+            return ans;
+        else return -1*ans;
+        
+        
+    }
+};
+
+int main(){
+
+	return 0;
+}
