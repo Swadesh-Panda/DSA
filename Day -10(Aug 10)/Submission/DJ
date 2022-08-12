@@ -1,0 +1,52 @@
+class Solution {
+public:
+    int myAtoi(string s) {
+        long long res=0;
+        bool neg=false;
+        bool num=false;
+        bool pos=false;
+        for(auto x:s)
+        {
+            if((isalpha(x) || x==' ' || x=='.' || x=='-' || x=='+') && (num || pos || neg))
+                {break;}
+            else if(x==' ')
+                continue;
+            
+            else if(x=='-' && !num)
+                {
+                if(pos)
+                    {
+                    return 0;}
+                else
+                    neg=true;}
+            
+            else if(x=='+' && !num)
+                {if(neg)
+                    return 0;
+                else
+                    pos=true;}
+            
+            
+            else if((isalpha(x) || x=='.') && !num)
+                {return 0;}
+            
+            else if(isdigit(x))
+            {
+                
+                res=res*10+(int)(x-'0');
+                if(res>2147483647)
+                    return neg?-2147483648:2147483647;
+                
+               
+                num=true;
+            }
+            
+            
+           
+        }
+        res=neg?-1*res:res;
+        return res;
+    }
+    
+    
+};
