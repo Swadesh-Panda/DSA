@@ -1,0 +1,30 @@
+class Solution {
+public:
+    static bool cmp(string a,string b)
+{
+  return a.length()<b.length();
+}
+    string longestCommonPrefix(vector<string>& strs) {
+        sort(strs.begin(),strs.end(),cmp);
+        string res;
+        int len= strs[0].size();
+        bool run=true;
+        
+        for(int i=0;i<len && run;i++)
+        {
+            for(auto str: strs)
+            {
+                if(strs[0][i]!=str[i])
+                {
+                    run=false;
+                }
+            }
+            
+            if(run)
+            res+=strs[0][i];
+        }
+        
+        
+        return res;
+    }
+};
