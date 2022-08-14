@@ -1,0 +1,32 @@
+//This is not a optimal solution bcoz it can also be done by without taking any variable.
+//TC-O(n)
+//SC-O(1)
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode *q=NULL,*r=head;
+        
+        if(head==NULL)return NULL;
+        while(r->next!=NULL){
+            ListNode *p=r->next;
+            r->next=q;
+            q=r;
+            r=p;
+        }
+        r->next=q;
+        return r;
+        
+    }
+    
+};
