@@ -31,7 +31,5 @@ public:
         }
         
         return v[v.size()-1];
-        
-        return temp;
     }
 };
