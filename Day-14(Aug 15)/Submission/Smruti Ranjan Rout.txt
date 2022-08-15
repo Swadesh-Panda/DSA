@@ -1,0 +1,30 @@
+//TC-O(n)
+//SC-O(1)
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+	int count(ListNode* p) {
+		int ct = 0;
+		while (p != NULL) {
+			ct++;
+			p = p->next;
+		}
+		return ct;
+	}
+	ListNode* middleNode(ListNode* head) {
+		int size = count(head);
+		cout << size << endl;
+		size = size / 2;
+		while (size--)head = head->next;
+		return head;
+	}
+};
+
+int main(){
+
+
+	return 0;
+}
