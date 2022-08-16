@@ -4,17 +4,14 @@ class Solution
         vector <int> search(string pat, string txt)
         {
             vector<int> v;
-            int i, j, flag;
-            for(i=0; i<txt.length(); i++){
-                flag = 0;
-                if(txt[i] == pat[0] && i+pat.length()<=txt.length()){
+            int i, j;
+            for(i=0; i<=txt.length()-pat.length(); i++){
+                if(txt[i] == pat[0]){
                     for(j = 1; j<pat.length(); j++){
-                        if(pat[j]!=txt[j+i]){
-                            flag++;
+                        if(pat[j]!=txt[j+i])
                             break;
-                        }
                     }
-                    if(flag == 0){
+                    if(j == pat.length()){
                         v.push_back(i+1);
                     }
                 }
