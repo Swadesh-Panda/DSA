@@ -1,0 +1,11 @@
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode *slowPtr = head, *fastPtr =  head;
+        while(fastPtr && fastPtr->next){
+            slowPtr = slowPtr->next;
+            fastPtr = fastPtr->next->next;
+        }
+        return slowPtr;
+    }
+};
