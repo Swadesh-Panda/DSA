@@ -1,0 +1,72 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        struct ListNode *sol = NULL;
+        struct ListNode *t1 = l1;
+        struct ListNode *t2 = l2;
+        struct ListNode *temp;
+        int c = 0;
+        while(t1!=NULL && t2!=NULL){
+            int s = t1->val + t2->val + c;
+            if(s > 9){
+                c = s/10;
+                s %= 10;
+            }
+            else{
+                c = 0;
+            }
+            if(sol == NULL){
+                sol = new ListNode(s);
+                temp = sol;
+            }
+            else{
+                struct ListNode *newNode = new ListNode(s);
+                temp->next = newNode;
+                temp = temp->next;
+            }
+            t1 = t1->next;
+            t2 = t2->next;
+        }
+        while(t1!=NULL){
+            int s = t1->val + c;
+            if(s > 9){
+                c = s/10;
+                s %= 10;
+            }
+            else
+                c = 0;
+            struct ListNode *newNode = new ListNode(s);
+            temp->next = newNode;
+            temp = temp->next;
+            t1 = t1->next;
+        }
+        while(t2!=NULL){
+            int s = t2->val + c;
+            if(s > 9){
+                c = s/10;
+                s %= 10;
+            }
+            else
+                c = 0;
+            struct ListNode *newNode = new ListNode(s);
+            temp->next = newNode;
+            temp = temp->next;
+            t2 = t2->next;
+        }
+        if(c){
+            struct ListNode *newNode = new ListNode(c);
+            temp->next = newNode;
+        }
+        return sol;
+    }
+};
