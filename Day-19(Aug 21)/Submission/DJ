@@ -1,0 +1,34 @@
+struct meet{
+        int s,e;
+    };
+class Solution
+{
+    
+    public:
+    static bool cmp(meet a,meet b){
+        return a.e<b.e;
+    }
+    //Function to find the maximum number of meetings that can
+    //be performed in a meeting room.
+    int maxMeetings(int start[], int end[], int n)
+    {
+        int curr=0,res=0;
+        vector<meet> meets(n);
+        
+        for(int i=0;i<n;i++){
+            meets[i].s=start[i];
+            meets[i].e=end[i];
+        }
+        
+        sort(meets.begin(),meets.end(),cmp);
+        
+        for(int i=0;i<n;i++){
+            if(meets[i].s>curr){
+                curr=meets[i].e;
+                res++;
+            }
+        }
+        
+        return res;
+    }
+};
