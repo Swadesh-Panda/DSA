@@ -1,0 +1,41 @@
+struct train{
+    int a,d;
+};
+    class Solution{
+    public:
+    static bool cmp(train a,train b){
+        return a.a<b.a;
+    }
+    //Function to find the minimum number of platforms required at the
+    //railway station such that no train waits.
+    int findPlatform(int arr[], int dep[], int n)
+    {
+    	vector<train> trains(n);
+    	int res=1;
+    	
+    	for(int i=0;i<n;i++){
+    	    trains[i].a=arr[i];
+    	    trains[i].d=dep[i];
+    	}
+    	
+    	sort(trains.begin(),trains.end(),cmp);
+    	
+    	priority_queue<int, vector<int>, greater<int> > p;
+    	
+    	p.push(trains[0].d);
+    	
+    	for (int i = 1; i < n; i++) {
+ 
+        if (p.top() >= trains[i].a) {
+            res++;
+        }
+        else {
+            p.pop();
+        }
+        p.push(trains[i].d);
+    }
+    	
+    	
+    	return res;
+    }
+};
