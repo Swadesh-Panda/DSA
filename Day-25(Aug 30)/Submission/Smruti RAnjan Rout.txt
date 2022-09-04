@@ -1,0 +1,28 @@
+int Solution::findMedian(vector<vector<int> > &A) {
+
+	//Now the idea is to count how many numbers are less or equal to that number
+	int hi=INT_MIN,lo=INT_MAX;
+	int n=A.size();
+	int m=A[0].size();
+
+	int k=(n*m+1)/2;
+
+	for(int i=0;i<n;i++){
+		hi=max(hi,A[i][m-1]);
+		lo=min(lo,A[i][0]);
+	}
+
+	while(lo<hi){
+		int mid=(lo+hi)/2;
+
+		int ct=0;
+		for(int i=0;i<n;i++){
+			ct+=(upper_bound(A[i].begin(),A[i].end(),mid)-A[i].begin());
+		}
+
+		if(ct<k)lo=mid+1;
+		else hi=mid;
+	}
+
+	return lo;
+}
